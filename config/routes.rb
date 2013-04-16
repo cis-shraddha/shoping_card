@@ -14,13 +14,6 @@ ShopingCard::Application.routes.draw do
 
   resources :categories
 
-
-  # get "admin/category_manag"
-
-  # get "admin/product_manag"
-
-  # get "admin/user_manag"
-
    get "admin_dashboard/dash"
    resources :admin_dashboard do 
        collection do
