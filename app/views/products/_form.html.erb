@@ -1,0 +1,37 @@
+<%= nested_form_for (@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.select(:category_id, Category.all.collect {|c| [ c.name, c.id ] }) %>
+   <%#= f.collection_select(:category_id, Category.all, :id, :product_name ) %>
+  <div class="field">
+    <%= f.label :product_name %><br />
+    <%= f.text_field :product_name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+      </div>
+
+  <%= f.fields_for :pictures do |task| %>
+    <div>    
+        <%= task.label :photo, "Photo" %>  
+        <%= task.file_field :photo %> 
+        <%= task.link_to_remove "Remove this Image" %> 
+    </div> 
+  <%end%> 
+                   
+  <p  :class => 'btn btn-mini btn-danger'><%= f.link_to_add "Add a Image", :pictures %></p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+	
+	
+<div class="cart_title" >Your Cart</div>
+<table>
+	<table border="1" cellpadding="10">
+			<tr>
+	<th>quantity</th>
+	<th>product id</th>
+	<th> price</th>
+	</tr>
+    <% for item in @cart.line_items %>
+<tr>
+
+     <td><%= item.quantity %>&times;</td>
+     <td><%= item.product_id %></td>
+     <td class="item_price" ><%= number_to_currency(item.total_price) %></td>
+</tr>
+		<% end %>
+		<tr class="total_line" >
+		<td colspan="2" >Total</td>
+		<td class="total_cell" ><%= number_to_currency(@cart.total_price) %></td>
+		</tr>
+</table>
+
+
+<%= button_to 'Empty cart' , @cart, :method => :delete,:confirm => 'Are you sure?' %>
+<%= button_to "Checkout"  %>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', root_path %>

@@ -1,0 +1,33 @@
+	<table border="1" cellpadding="10">
+		<tr>
+	<th>User_id</th>
+	<th>User_email</th>
+	<th></th>
+	</tr>
+
+<% @user.each do |user| %>
+<tr>
+    <td><%= user.id %></td>
+    <td><%= user.email %></td>
+
+    <td>
+    	<%=form_tag admin_dashboard_usr_change_path, :id => "checkbox", :method =>"post", :remote =>true  do %>
+    	  <%= check_box_tag 'is_active[]', "#{user.id}", (user.is_active ?  false : true ),:class=>"is_active"  %>
+    	  <%=hidden_field_tag :id, user.id %>
+    	<%end%>
+    </td>
+
+ </tr>   
+
+  <% end %>
+
+</table>
+
+<script>
+$(document).ready(function() {
+  $(".is_active").click(function(){
+  $(this).closest("form").submit();
+  alert( "R u sure !" );
+  })
+});
+</script>

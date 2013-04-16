@@ -1,0 +1,34 @@
+<div class="container-fluid fill">
+  <div class="row-fluid">
+    <div class="span3",:style="border:solid 1px red">
+      <!--Sidebar content-->
+
+<% @category = Category.where(:parent_id => nil)%>
+  <% @category.each do |category| %>
+    <tr> 
+     
+      <li> <%= link_to category.name , root_path(:category_id=>category.id ) %></li>
+      <% category.children.each do |child| %>
+         <ul> <%= link_to child.name ,root_path(:category_id=>child.id) %> </ul>
+    <% end %>
+    <%end%>
+       
+    </div>
+ 
+    <div class="span9 hero-unit filler">
+      <% @products.each_slice(3) do |row| %>
+        <div class="row"> <!-- Each row of my Grid -->
+          <% row.each do |product| %>
+            <%product.pictures.each do |image| %>     
+              <div class="offset1 span3"><%= link_to (image_tag image.photo.url(:small)), product_path(product)%><br>
+            <%end%>
+            <%= product.product_name  %><br>
+            <%= product.price %><br>
+           </div>
+          <% end %>
+        </div>
+      <% end %>
+   
+    </div>
+  </div>
+</div>
