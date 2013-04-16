@@ -38,8 +38,7 @@ gem "nested_form"
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+
 gem 'will_paginate', '~> 3.0'
 # To use debugger
 gem 'debugger'
