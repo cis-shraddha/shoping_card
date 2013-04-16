@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   def index
    
-    @products = Product.search params[:search]
-    @cart = current_cart
+	    @products = Product.search params[:search]
+	    @cart = current_cart
 
     respond_to do |format|
       format.html # index.html.erb
